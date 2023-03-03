@@ -72,8 +72,8 @@ else(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions")
 
   # Disable RTTI.
-  string(REGEX REPLACE "-frtti" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti")
+  # string(REGEX REPLACE "-frtti" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+  # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-rtti")
 endif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
 
 # Test whether -Wthread-safety is available. See
@@ -86,6 +86,8 @@ check_cxx_compiler_flag(-Wno-missing-field-initializers
                         LEVELDB_HAVE_NO_MISSING_FIELD_INITIALIZERS)
 
 include(CheckCXXSourceCompiles)
+# set position indepenent code to on
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Test whether C++17 __has_include is available.
 check_cxx_source_compiles("
